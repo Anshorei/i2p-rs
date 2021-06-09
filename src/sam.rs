@@ -144,6 +144,14 @@ impl Session {
         })
     }
 
+    pub fn create_transient<A: ToSocketAddrs>(
+        sam_addr: A,
+        nickname: &str,
+        style: SessionStyle,
+    ) -> Result<Session, Error> {
+        Self::create(sam_addr, "TRANSIENT", nickname, style)
+    }
+
     pub fn sam_api(&self) -> io::Result<SocketAddr> {
         self.sam.conn.peer_addr()
     }
